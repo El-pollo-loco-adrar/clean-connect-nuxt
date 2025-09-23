@@ -1,0 +1,52 @@
+<template>
+  <div class="flex items-center justify-center px-4">
+    <div class="card w-full bg-[#F3F4F6] shadow-xl border pb-12">
+      <div class="mt-8 flex flex-col items-center">
+        <h1 class="font-semibold text-2xl mb-4">Bienvenue</h1>
+        <span class="mt-4">{{ userName }}</span>
+      </div>
+      <div class="grid grid-cols-1 min-[360px]:grid-cols-2 gap-6 m-12">
+
+        <NuxtLink to="/homePart">
+          <div class="border-2 bg-[#3B82F6]/16 text-center rounded-sm shadow-xl flex flex-col items-center justify-center p-8 gap-4">
+            <svg xmlns="http://www.w3.org/2000/svg" 
+              width="24" height="24" 
+              viewBox="0 0 24 24" 
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-icon lucide-search"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+              <span class="font-bold">Voir les missions</span>
+            </div>
+        </NuxtLink>
+
+        <NuxtLink to="/homePart">
+          <div class="border-2 bg-[#3B82F6]/16 text-center rounded-sm shadow-xl flex flex-col items-center justify-center p-8 gap-4">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+              <path d="M12.75 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM7.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM8.25 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM9.75 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM10.5 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM12.75 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM14.25 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" />
+              <path fill-rule="evenodd" d="M6.75 2.25A.75.75 0 0 1 7.5 3v1.5h9V3A.75.75 0 0 1 18 3v1.5h.75a3 3 0 0 1 3 3v11.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V7.5a3 3 0 0 1 3-3H6V3a.75.75 0 0 1 .75-.75Zm13.5 9a1.5 1.5 0 0 0-1.5-1.5H5.25a1.5 1.5 0 0 0-1.5 1.5v7.5a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5v-7.5Z" clip-rule="evenodd" />
+            </svg>
+            <span class="font-bold break-words whitespace-normal">Mes candidatures</span>
+          </div>
+        </NuxtLink>
+
+        <div class="min-[360px]:col-span-2">
+          <NuxtLink to="/homePart">
+            <div class="border-2 bg-[#3B82F6]/16 text-center rounded-sm shadow-xl flex flex-col items-center justify-center p-8 gap-4">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+              </svg>
+              <span class="font-bold">Messagerie</span>
+            </div>
+          </NuxtLink>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  
+</template>
+
+<script setup>
+    const userName = ref('Test nom particulier')
+</script>
+
+<style scoped lang="css">
+</style>
