@@ -157,7 +157,7 @@
         <div class="dropdown dropdown-bottom dropdown-center flex items-center justify-center text-xl gap-2">
           <!-- Bouton -->
           <div tabindex="0" role="button" class="btn m-1">
-            Techniques...
+            Techniques demandées...
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -307,68 +307,97 @@
           </label>
         </div>
 
-        <button type="submit" class="btn bg-[#2563EB]/79 w-fit px-6 mt-8 mx-auto text-white border-2 border-black rounded-4">Publier la mission</button>
+        <button 
+          type="submit" 
+          class="btn bg-[#2563EB]/79 w-fit px-6 mt-8 mx-auto text-white border-2 border-black rounded-4"
+          @click.prevent="handleSubmit"
+        >Publier la mission</button>
 
       </form>
     </div>
 
     <!--Récap de la mission-->
-    <div v-if="showRecap" class="mt-8 border p-4 rounded w-3/4 mx-auto bg-gray-50" >
-      <h2 class="text-2xl font-bold mb-2">Récapitulatif de la mission</h2>
-      <p class="mb-4"><strong class="underline">Titre :</strong> {{ nameMission }}</p>
-      <p class="mb-4"><strong class="underline">Date :</strong> {{ dateMission }}</p>
-      <p class="mb-4"><strong class="underline">Heure de début :</strong> {{ hourStartMission }}</p>
-      <p class="mb-4"><strong class="underline">Heure de fin :</strong> {{ hourEndMission }}</p>
-      <p class="mb-4"><strong class="underline">Lieux :</strong> {{ placeMission }} - {{ postalMission }} - {{ cityMission }}</p>
-      <p class="mb-4"><strong class="underline">Description :</strong> {{ descMission }}</p>
-      <p class="text-xl underline">Compétence recherchées :</p>
-      <p class="mb-4"><strong class="underline">Milieu :</strong> {{ selectedMilieu }}</p>
-      <p class="mb-4"><strong class="underline">Techniques :</strong> {{ selectedTechniques.join(', ') }}</p>
-      <p class="mb-4"><strong class="underline">Salaire par heure :</strong> {{ selectedSalary }}</p>
-      <p v-if="isUrgent">
-        <strong class="underline">Urgent :</strong> oui</p>
-    </div>
+    
   </div>
 </template>
 
 <script setup>
 import { onClickOutside } from '@vueuse/core'
+import { useMissionStore } from '~/stores/mission'
 
-const nameMission = ref('')
-const descMission = ref('')
-const dateMission = ref('')
-const hourStartMission = ref('')
-const hourEndMission = ref('')
-const placeMission = ref('')
-const postalMission = ref('')
-const cityMission = ref('')
-const selectedMilieu = ref('')
+const router = useRouter();
+const missionStore = useMissionStore();
 
-const selectedTechniques = ref([])
+//J'ai trié les ref dans l'ordre du formulaire
+const formData = {
+  nameMission : ref(missionStore.missionData.nameMission || ''),
+  descMission : ref(missionStore.missionData.descMission || ''),
+  dateMission : ref(missionStore.missionData.dateMission || ''),
+  hourStartMission : ref(missionStore.missionData.hourStartMission || ''),
+  hourEndMission : ref(missionStore.missionData.hourEndMission || ''),
+  placeMission : ref(missionStore.missionData.placeMission || ''),
+  postalMission : ref(missionStore.missionData.postalMission || ''),
+  cityMission : ref(missionStore.missionData.cityMission || ''),
+  selectedMilieu : ref(missionStore.missionData.selectedMilieu || ''),
+  selectedTechniques : ref(missionStore.missionData.selectedTechniques || []),
+  selectedSalary : ref(missionStore.missionData.selectedSalary || ''),
+  isUrgent : ref(missionStore.missionData.isUrgent || null)
+}
+
+// Extraction des refs de l'objet pour les lier au template (v-model)
+const {
+    nameMission, descMission, dateMission, hourStartMission, hourEndMission, 
+    placeMission, postalMission, cityMission, selectedMilieu, 
+    selectedTechniques, selectedSalary, isUrgent
+} = formData;
+
+//Appel et utilisation du composable addMissionValidation
+const { errors, validateForm } = useMissionValidation(formData);
+
   const entretienCourant = ['Sanitaire', 'Bureau', 'Sol', 'Vitres']
   const entretienMecanise = ['Spray', 'Lustrage', 'Lavage Mécanisé']
   const remiseEnEtat = ['Décapage', 'Shampoing moquette']
   const vitrerie = ['Vitres en hauteur (à modifier !!!!)']
-
+  const atqs = ['3 - 14.79€ /h', "2 - 13.76€ /h", "1 - 13.03€ /h"]
+  const aqs = ['3 - 12.78€ /h', '2 - 12.67€ /h', '1 - 12.56€ /h']
+  const as = ['ASCS - 12.50€ /h', 'ASC - 12.43€ /h', 'ASP - 12.38€ /h']
+  //Dropdown 
   const techDropdown = ref(null)
   onClickOutside(techDropdown, () =>{
     if (techDropdown.value) {
       techDropdown.value.open = false
     }
   })
-const selectedSalary = ref('')
-  const atqs = ['3 - 14.79€', "2 - 13.76€", "1 - 13.03€"]
-  const aqs = ['3 - 12.78€', '2 - 12.67€', '1 - 12.56€']
-  const as = ['ASCS - 12.50€', 'ASC - 12.43€', 'ASP - 12.38€']
 
-const isUrgent = ref(null)
 
-const showRecap = ref(null)
+
 const handleSubmit = () => {
-  showRecap.value = true
-  window;scrollTo({top: 0, behavior: 'smooth'})
+  //1 Appel de la validation du composable
+  if(!validateForm()){
+    console.log('Validation échoué', errors.value);
+    return
+  }
+
+  //2. Si la validation est OK, on sauvegarde et on navigue
+  missionStore.setMissionData({
+    nameMission: nameMission.value,
+    descMission: descMission.value,
+    dateMission: dateMission.value,
+    hourStartMission: hourStartMission.value,
+    hourEndMission: hourEndMission.value,
+    placeMission: placeMission.value,
+    postalMission: postalMission.value,
+    cityMission: cityMission.value,
+    selectedMilieu: selectedMilieu.value,
+    selectedTechniques: selectedTechniques.value,
+    selectedSalary: selectedSalary.value,
+    isUrgent: isUrgent.value
+  })
+  router.push('showMission')
 }
+
 </script>
 
 <style scoped lang="css">
 </style>
+
