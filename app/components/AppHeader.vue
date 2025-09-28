@@ -26,7 +26,7 @@
 
     <!-- Droite : bouton info -->
     <div class="flex-none">
-      <NuxtLink to="/howItWorks">
+      <NuxtLink to="/legal/howItWorks">
           <button class="btn btn-ghost btn-square">
           <!-- Icône info -->
           <svg xmlns="http://www.w3.org/2000/svg" 

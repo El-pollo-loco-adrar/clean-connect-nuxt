@@ -17,6 +17,7 @@
           required
           placeholder="ex: Nettoyage banque"
         >
+        <p class="text-sm text-red-500 font-semibold text-center" v-if="errors.nameMission">{{ errors.nameMission }}</p>
 
         <!--Description-->
         <label class="text-center text-xl mt-4" for="descMission">Description :</label>
@@ -28,6 +29,8 @@
           required        
         >
         </textarea>
+        <p class="text-sm text-red-500 font-semibold text-center" v-if="errors.descMission">{{ errors.descMission }}</p>
+
         <hr class="border-t-2 border-black m-8 mx-16" />
 
         <!--Date-->
@@ -43,7 +46,9 @@
         <input 
           v-model="dateMission"
           type="date" class="input w-64 mx-auto" id="dateMission" name="dateMission" required
+          @blur="validateDate"
         />
+        <p v-if="errors.dateMission" class="text-red-600 text-sm text-center font-semibold">{{ errors.dateMission }}</p>
 
         <!--Heure de début-->
         <label class="flex items-center justify-center text-xl m-4 gap-2" for="hourStartMission">
@@ -56,6 +61,7 @@
         <input 
           v-model="hourStartMission"
           type="time" class="input w-64 mx-auto" id="hourStartMission" name="hourStartMission" required
+          @change="validateHour"
         />
 
         <!-- Heure de fin -->
@@ -69,7 +75,9 @@
         <input 
           v-model="hourEndMission"
           type="time" class="input w-64 mx-auto" id="hourEndMission" name="hourEndMission" required 
+          @change="validateHour"
         />
+        <p v-if="errors.hourEndMission" class="text-red-600 text-sm text-center font-semibold">{{ errors.hourEndMission }}</p>
         <hr class="border-t-2 border-black m-8 mx-16" />
 
         <!-- Adresse -->
@@ -83,16 +91,21 @@
         <input v-model="placeMission" 
           type="text" class="input w-64 mx-auto" id="placeMission" name="placeMission" required placeholder="1 rue de la République"
           />
+          <p v-if="errors.placeMission" class="text-red-600 text-sm text-center font-semibold">{{ errors.placeMission }}</p>
 
           <!-- Code postal + Ville -->
         <div class="flex justify-center gap-2 mt-4">
+          <!--Code postal-->
           <input 
             v-model="postalMission" 
             type="text" 
             maxlength="5" 
             class="input w-28" 
             placeholder="Code postal"
+            @blur="validatePostal"
           />
+          
+          <!--Ville-->
           <input 
             v-model="cityMission" 
             type="text" 
@@ -100,6 +113,8 @@
             placeholder="Ville"
           />
         </div>
+        <p v-if="errors.postalMission" class="text-red-600 text-sm text-center font-semibold">{{ errors.postalMission }}</p>
+        <p v-if="errors.cityMission" class="text-red-600 text-sm text-center font-semibold">{{ errors.cityMission }}</p>
         <hr class="border-t-2 border-black m-8 mx-16" />
 
         <p class="flex items-center justify-center text-2xl gap-2 font-semibold" for="hourEndMission">
@@ -117,35 +132,36 @@
 
           <div class="flex flex-col gap-3">
             <label class="flex items-center gap-2 cursor-pointer">
-              <input type="radio" name="milieu" class="radio" value="Tertiaire" v-model="selectedMilieu" />
+              <input type="radio" name="milieu" class="radio" value="Tertiaire" v-model="selectedMilieu" @change="validateMilieu" />
               <span>Tertiaire</span>
             </label>
 
             <label class="flex items-center gap-2 cursor-pointer">
-              <input type="radio" name="milieu" class="radio" value="Pharmaceutique" v-model="selectedMilieu" />
+              <input type="radio" name="milieu" class="radio" value="Pharmaceutique" v-model="selectedMilieu" @change="validateMilieu" />
               <span>Pharmaceutique</span>
             </label>
 
             <label class="flex items-center gap-2 cursor-pointer">
-              <input type="radio" name="milieu" class="radio" value="Hospitalier" v-model="selectedMilieu" />
+              <input type="radio" name="milieu" class="radio" value="Hospitalier" v-model="selectedMilieu" @change="validateMilieu" />
               <span>Hospitalier</span>
             </label>
 
             <label class="flex items-center gap-2 cursor-pointer">
-              <input type="radio" name="milieu" class="radio" value="Industriel" v-model="selectedMilieu" />
+              <input type="radio" name="milieu" class="radio" value="Industriel" v-model="selectedMilieu" @change="validateMilieu" />
               <span>Industriel</span>
             </label>
 
             <label class="flex items-center gap-2 cursor-pointer">
-              <input type="radio" name="milieu" class="radio" value="Scolaire" v-model="selectedMilieu" />
+              <input type="radio" name="milieu" class="radio" value="Scolaire" v-model="selectedMilieu" @change="validateMilieu" />
               <span>Scolaire</span>
             </label>
 
             <label class="flex items-center gap-2 cursor-pointer">
-              <input type="radio" name="milieu" class="radio" value="Agroalimentaire" v-model="selectedMilieu" />
+              <input type="radio" name="milieu" class="radio" value="Agroalimentaire" v-model="selectedMilieu" @change="validateMilieu" />
               <span>Agroalimentaire</span>
             </label>
           </div>
+          <p class="text-red-600 text-sm font-semibold text-center" v-if="errors.selectedMilieu">{{ errors.selectedMilieu }}</p>
         </div>
 
         <!-- Affichage du choix du milieu -->
@@ -174,7 +190,7 @@
               <ul class="ml-4 mt-2">
                 <li v-for="tech in entretienCourant" :key="tech">
                   <label class="flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" v-model="selectedTechniques" :value="tech" />
+                    <input type="checkbox" v-model="selectedTechniques" @change="validateTechniques" :value="tech" />
                     {{ tech }}
                   </label>
                 </li>
@@ -186,7 +202,7 @@
               <ul class="ml-4 mt-2">
                 <li v-for="tech in entretienMecanise" :key="tech">
                   <label class="flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" v-model="selectedTechniques" :value="tech" />
+                    <input type="checkbox" v-model="selectedTechniques" @change="validateTechniques" :value="tech" />
                     {{ tech }}
                   </label>
                 </li>
@@ -198,7 +214,7 @@
               <ul class="ml-4 mt-2">
                 <li v-for="tech in remiseEnEtat" :key="tech">
                   <label class="flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" v-model="selectedTechniques" :value="tech" />
+                    <input type="checkbox" v-model="selectedTechniques" @change="validateTechniques" :value="tech" />
                     {{ tech }}
                   </label>
                 </li>
@@ -210,7 +226,7 @@
               <ul class="ml-4 mt-2">
                 <li v-for="tech in vitrerie" :key="tech">
                   <label class="flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" v-model="selectedTechniques" :value="tech" />
+                    <input type="checkbox" v-model="selectedTechniques" @change="validateTechniques" :value="tech" />
                     {{ tech }}
                   </label>
                 </li>
@@ -218,6 +234,8 @@
             </li>
           </ul>
         </div>
+        <p class="text-red-600 text-sm font-semibold text-center" v-if="errors.selectedTechniques">{{ errors.selectedTechniques }}</p>
+
 
         <!-- Affichage des choix techniques -->
         <div v-if="selectedTechniques.length" class="mt-4 text-center">
@@ -259,7 +277,7 @@
               <ul class="ml-4 mt-2">
                 <li v-for="salary in atqs" :key="salary">
                   <label class="flex items-center gap-2 cursor-pointer">
-                    <input type="radio" name="salaire" class="radio" v-model="selectedSalary" :value="`ATQS - Niveau ${salary}`" />
+                    <input type="radio" name="salaire" class="radio" v-model="selectedSalary" :value="`ATQS - Niveau ${salary}`" @change="validateSalary" />
                     {{ salary }}
                   </label>
                 </li>
@@ -271,7 +289,7 @@
               <ul class="ml-4 mt-2">
                 <li v-for="salary in aqs" :key="salary">
                   <label class="flex items-center gap-2 cursor-pointer">
-                    <input type="radio" name="salaire" class="radio" v-model="selectedSalary" :value="`AQS - Niveau ${salary}`" />
+                    <input type="radio" name="salaire" class="radio" v-model="selectedSalary" :value="`AQS - Niveau ${salary}`" @change="validateSalary"/>
                     {{ salary }}
                   </label>
                 </li>
@@ -283,7 +301,7 @@
               <ul class="ml-4 mt-2">
                 <li v-for="salary in as" :key="salary">
                   <label class="flex items-center gap-2 cursor-pointer">
-                    <input type="radio" name="salaire" class="radio" v-model="selectedSalary" :value="`AS - Niveau ${salary}`" />
+                    <input type="radio" name="salaire" class="radio" v-model="selectedSalary" :value="`AS - Niveau ${salary}`" @change="validateSalary" />
                     {{ salary }}
                   </label>
                 </li>
@@ -291,6 +309,7 @@
             </li>
           </ul>
         </div>
+        <p class="text-red-600 text-sm font-semibold text-center" v-if="errors.selectedSalary">{{ errors.selectedSalary }}</p>
 
         <!--Affichage du salaire-->
         <p v-if="selectedSalary" class="mb-4 text-center text-lg font-semibold">
@@ -314,16 +333,14 @@
         >Publier la mission</button>
 
       </form>
-    </div>
-
-    <!--Récap de la mission-->
-    
+    </div>    
   </div>
 </template>
 
 <script setup>
 import { onClickOutside } from '@vueuse/core'
 import { useMissionStore } from '~/stores/mission'
+import { watch } from 'vue';
 
 const router = useRouter();
 const missionStore = useMissionStore();
@@ -352,7 +369,7 @@ const {
 } = formData;
 
 //Appel et utilisation du composable addMissionValidation
-const { errors, validateForm } = useMissionValidation(formData);
+const { errors, validateName, validateDesc, validateForm, validatePlace, validatePostal, validateCity, validateDate, validateHour, validateMilieu, validateTechniques, validateSalary } = useMissionValidation(formData);
 
   const entretienCourant = ['Sanitaire', 'Bureau', 'Sol', 'Vitres']
   const entretienMecanise = ['Spray', 'Lustrage', 'Lavage Mécanisé']
@@ -369,7 +386,47 @@ const { errors, validateForm } = useMissionValidation(formData);
     }
   })
 
+// ✅ Watch pour mettre à jour les erreurs en direct
+watch(nameMission, () => {
+  validateName()
+});
 
+watch(descMission, () => {
+  validateDesc()
+});
+
+watch(placeMission, () => {
+  validatePlace()
+});
+
+watch(postalMission, () => {
+  validatePostal()
+});
+
+watch(cityMission, () => {
+  validateCity()
+});
+
+watch(dateMission, () => {
+  validateDate()
+  validateHour()
+});
+
+watch([hourStartMission, hourEndMission], () => {
+  validateHour()
+});
+
+watch(selectedMilieu, () => {
+  validateMilieu()
+});
+
+watch(selectedTechniques, () => {
+  validateTechniques(), { deep: true}
+});// { deep: true }  nécessaire car selectedTechniques est un tableau 
+
+watch(selectedSalary, () => {
+  validateSalary()
+});
 
 const handleSubmit = () => {
   //1 Appel de la validation du composable
