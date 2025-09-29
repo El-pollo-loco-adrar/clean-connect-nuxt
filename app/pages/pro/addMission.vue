@@ -190,7 +190,7 @@
               <ul class="ml-4 mt-2">
                 <li v-for="tech in entretienCourant" :key="tech">
                   <label class="flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" v-model="selectedTechniques" @change="validateTechniques" :value="tech" />
+                    <input type="checkbox" v-model="selectedTechniques" @change="validateTechniques" :value="tech" class="checkbox checkbox-primary bg-white border-gray-400 dark:bg-white dark:border-gray-400" />
                     {{ tech }}
                   </label>
                 </li>
