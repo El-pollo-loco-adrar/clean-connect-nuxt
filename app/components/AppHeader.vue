@@ -2,7 +2,7 @@
   <div class="navbar bg-[#F3F4F6] shadow-sm justify-between h-28 border-b border-black mb-10">
     <!-- Gauche : bouton Home -->
     <div class="flex-none">
-      <NuxtLink to="/" class="btn btn-ghost btn-square">
+      <NuxtLink to="/" class="btn btn-ghost btn-square text-gray-800 dark:text-gray-800 active:text-gray-800 dark:active:text-gray-800">
         <!-- Icône maison -->
         <svg xmlns="http://www.w3.org/2000/svg" 
             fill="none" 

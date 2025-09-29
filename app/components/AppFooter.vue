@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer footer-horizontal footer-center bg-[#3B82F6]/16 text-base-content rounded p-10 border-t border-black mt-10">
+  <footer class="footer footer-horizontal footer-center bg-[#3B82F6]/16 text-base-content rounded p-10 border-t border-black mt-10 text-gray-800 dark:text-gray-800">
     <nav class="grid grid-flow-col gap-4">
       <NuxtLink to="/">A propos</NuxtLink>
       <NuxtLink to="/">Politique de confidentialité</NuxtLink>
