@@ -132,32 +132,32 @@
 
           <div class="flex flex-col gap-3">
             <label class="flex items-center gap-2 cursor-pointer">
-              <input type="radio" name="milieu" class="radio-primary bg-white border-gray-400 dark:bg-white dark:border-gray-400" value="Tertiaire" v-model="selectedMilieu" @change="validateMilieu" />
+              <input type="radio" name="milieu" class="radio bg-white border-gray-400 dark:bg-white dark:border-gray-400" value="Tertiaire" v-model="selectedMilieu" @change="validateMilieu" />
               <span>Tertiaire</span>
             </label>
 
             <label class="flex items-center gap-2 cursor-pointer">
-              <input type="radio" name="milieu" class="radio-primary bg-white border-gray-400 dark:bg-white dark:border-gray-400" value="Pharmaceutique" v-model="selectedMilieu" @change="validateMilieu" />
+              <input type="radio" name="milieu" class="radio bg-white border-gray-400 dark:bg-white dark:border-gray-400" value="Pharmaceutique" v-model="selectedMilieu" @change="validateMilieu" />
               <span>Pharmaceutique</span>
             </label>
 
             <label class="flex items-center gap-2 cursor-pointer">
-              <input type="radio" name="milieu" class="radio-primary bg-white border-gray-400 dark:bg-white dark:border-gray-400" value="Hospitalier" v-model="selectedMilieu" @change="validateMilieu" />
+              <input type="radio" name="milieu" class="radio bg-white border-gray-400 dark:bg-white dark:border-gray-400" value="Hospitalier" v-model="selectedMilieu" @change="validateMilieu" />
               <span>Hospitalier</span>
             </label>
 
             <label class="flex items-center gap-2 cursor-pointer">
-              <input type="radio" name="milieu" class="radio-primary bg-white border-gray-400 dark:bg-white dark:border-gray-400" value="Industriel" v-model="selectedMilieu" @change="validateMilieu" />
+              <input type="radio" name="milieu" class="radio bg-white border-gray-400 dark:bg-white dark:border-gray-400" value="Industriel" v-model="selectedMilieu" @change="validateMilieu" />
               <span>Industriel</span>
             </label>
 
             <label class="flex items-center gap-2 cursor-pointer">
-              <input type="radio" name="milieu" class="radio-primary bg-white border-gray-400 dark:bg-white dark:border-gray-400" value="Scolaire" v-model="selectedMilieu" @change="validateMilieu" />
+              <input type="radio" name="milieu" class="radio bg-white border-gray-400 dark:bg-white dark:border-gray-400" value="Scolaire" v-model="selectedMilieu" @change="validateMilieu" />
               <span>Scolaire</span>
             </label>
 
             <label class="flex items-center gap-2 cursor-pointer">
-              <input type="radio" name="milieu" class="radio-primary bg-white border-gray-400 dark:bg-white dark:border-gray-400" value="Agroalimentaire" v-model="selectedMilieu" @change="validateMilieu" />
+              <input type="radio" name="milieu" class="radio bg-white border-gray-400 dark:bg-white dark:border-gray-400" value="Agroalimentaire" v-model="selectedMilieu" @change="validateMilieu" />
               <span>Agroalimentaire</span>
             </label>
           </div>
@@ -277,7 +277,7 @@
               <ul class="ml-4 mt-2">
                 <li v-for="salary in atqs" :key="salary">
                   <label class="flex items-center gap-2 cursor-pointer">
-                    <input type="radio" name="salaire" class="radio-primary bg-white border-gray-400 dark:bg-white dark:border-gray-400" v-model="selectedSalary" :value="`ATQS - Niveau ${salary}`" @change="validateSalary" />
+                    <input type="radio" name="salaire" class="radio bg-white border-gray-400 dark:bg-white dark:border-gray-400" v-model="selectedSalary" :value="`ATQS - Niveau ${salary}`" @change="validateSalary" />
                     {{ salary }}
                   </label>
                 </li>
@@ -289,7 +289,7 @@
               <ul class="ml-4 mt-2">
                 <li v-for="salary in aqs" :key="salary">
                   <label class="flex items-center gap-2 cursor-pointer">
-                    <input type="radio" name="salaire" class="radio-primary bg-white border-gray-400 dark:bg-white dark:border-gray-400" v-model="selectedSalary" :value="`AQS - Niveau ${salary}`" @change="validateSalary"/>
+                    <input type="radio" name="salaire" class="radio bg-white border-gray-400 dark:bg-white dark:border-gray-400" v-model="selectedSalary" :value="`AQS - Niveau ${salary}`" @change="validateSalary"/>
                     {{ salary }}
                   </label>
                 </li>
@@ -301,7 +301,7 @@
               <ul class="ml-4 mt-2">
                 <li v-for="salary in as" :key="salary">
                   <label class="flex items-center gap-2 cursor-pointer">
-                    <input type="radio" name="salaire" class="radio-primary bg-white border-gray-400 dark:bg-white dark:border-gray-400" v-model="selectedSalary" :value="`AS - Niveau ${salary}`" @change="validateSalary" />
+                    <input type="radio" name="salaire" class="radio bg-white border-gray-400 dark:bg-white dark:border-gray-400" v-model="selectedSalary" :value="`AS - Niveau ${salary}`" @change="validateSalary" />
                     {{ salary }}
                   </label>
                 </li>
