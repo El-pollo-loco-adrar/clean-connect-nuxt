@@ -271,7 +271,7 @@
           </div>
 
           <!-- Contenu du dropdown -->
-          <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-64 p-2 shadow-sm">
+          <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-64 p-2 shadow-sm bg-white text-gray-800 dark:bg-white dark:text-gray-800">
             <li>
               <span class="font-semibold">Niveau ATQS</span>
               <ul class="ml-4 mt-2">
