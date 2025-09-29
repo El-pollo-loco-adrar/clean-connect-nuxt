@@ -10,7 +10,7 @@
         <label class="text-center text-xl" for="nameMission">Titre de la mission</label>
         <input 
           v-model="nameMission" 
-          class="input border bg-[#3B82F6]/16 rounded p-2 mt-2 w-64 mx-auto"
+          class="input border rounded p-2 bg-white text-gray-800 dark:bg-white dark:text-gray-800 mt-2 w-64 mx-auto"
           type="text" 
           id="nameMission" 
           name="nameMission" 
@@ -172,7 +172,7 @@
         <!--Techniques-->
         <div class="dropdown dropdown-bottom dropdown-center flex items-center justify-center text-xl gap-2">
           <!-- Bouton -->
-          <div tabindex="0" role="button" class="btn m-1">
+          <div tabindex="0" role="button" class="btn m-1 border bg-[#3B82F6]/16">
             Techniques demandées...
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -184,7 +184,7 @@
           </div>
 
           <!-- Contenu du dropdown -->
-          <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-64 p-2 shadow-sm">
+          <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-64 p-2 shadow-sm border bg-[#3B82F6]/16">
             <li>
               <span class="font-semibold">Entretien courant</span>
               <ul class="ml-4 mt-2">
