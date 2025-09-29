@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen flex flex-col bg-white text-gray-800 dark:bg-white dark:text-gray-800 text-base-content">
+  <div class="min-h-screen flex flex-col bg-white text-gray-800 dark:bg-white dark:text-gray-800">
     <header v-if="showHeader">
       <AppHeader v-if="!userStore.isAuthenticated"/>
       <app-header-pro v-else-if="userStore.role ==='pro'"/>
