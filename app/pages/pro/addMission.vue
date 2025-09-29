@@ -10,7 +10,7 @@
         <label class="text-center text-xl" for="nameMission">Titre de la mission</label>
         <input 
           v-model="nameMission" 
-          class="input border rounded p-2 mt-2 w-64 mx-auto" 
+          class="input border bg-[#3B82F6]/16 rounded p-2 mt-2 w-64 mx-auto"
           type="text" 
           id="nameMission" 
           name="nameMission" 
@@ -18,13 +18,13 @@
           placeholder="ex: Nettoyage banque"
         >
         <p class="text-sm text-red-500 font-semibold text-center" v-if="errors.nameMission">{{ errors.nameMission }}</p>
-
+<!-- class="input border rounded p-2 mt-2 w-64 mx-auto" -->
         <!--Description-->
         <label class="text-center text-xl mt-4" for="descMission">Description :</label>
         <textarea 
           v-model="descMission"
           name="descMission"
-          class="textarea textarea-md border rounded p-2 mt-2 w-64 mx-auto" 
+          class="textarea textarea-md border bg-[#3B82F6]/16 rounded p-2 mt-2 w-64 mx-auto" 
           placeholder="Infos précises: tâches, environnement, produits à disposition"  
           required        
         >
@@ -45,7 +45,7 @@
         </label>
         <input 
           v-model="dateMission"
-          type="date" class="input w-64 mx-auto" id="dateMission" name="dateMission" required
+          type="date" class="input w-64 mx-auto border bg-[#3B82F6]/16" id="dateMission" name="dateMission" required
           @blur="validateDate"
         />
         <p v-if="errors.dateMission" class="text-red-600 text-sm text-center font-semibold">{{ errors.dateMission }}</p>
@@ -60,7 +60,7 @@
         </label>
         <input 
           v-model="hourStartMission"
-          type="time" class="input w-64 mx-auto" id="hourStartMission" name="hourStartMission" required
+          type="time" class="input w-64 mx-auto border bg-[#3B82F6]/16" id="hourStartMission" name="hourStartMission" required
           @change="validateHour"
         />
 
@@ -74,7 +74,7 @@
         </label>
         <input 
           v-model="hourEndMission"
-          type="time" class="input w-64 mx-auto" id="hourEndMission" name="hourEndMission" required 
+          type="time" class="input w-64 mx-auto border bg-[#3B82F6]/16" id="hourEndMission" name="hourEndMission" required 
           @change="validateHour"
         />
         <p v-if="errors.hourEndMission" class="text-red-600 text-sm text-center font-semibold">{{ errors.hourEndMission }}</p>
@@ -89,7 +89,7 @@
           Lieu :
         </label>
         <input v-model="placeMission" 
-          type="text" class="input w-64 mx-auto" id="placeMission" name="placeMission" required placeholder="1 rue de la République"
+          type="text" class="input w-64 mx-auto border bg-[#3B82F6]/16" id="placeMission" name="placeMission" required placeholder="1 rue de la République"
           />
           <p v-if="errors.placeMission" class="text-red-600 text-sm text-center font-semibold">{{ errors.placeMission }}</p>
 
@@ -100,7 +100,7 @@
             v-model="postalMission" 
             type="text" 
             maxlength="5" 
-            class="input w-28" 
+            class="input w-28 border bg-[#3B82F6]/16" 
             placeholder="Code postal"
             @blur="validatePostal"
           />
@@ -109,7 +109,7 @@
           <input 
             v-model="cityMission" 
             type="text" 
-            class="input w-40" 
+            class="input w-40 border bg-[#3B82F6]/16" 
             placeholder="Ville"
           />
         </div>
