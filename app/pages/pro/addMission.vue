@@ -24,7 +24,7 @@
         <textarea 
           v-model="descMission"
           name="descMission"
-          class="textarea textarea-md border bg-[#3B82F6]/16 rounded p-2 mt-2 w-64 mx-auto" 
+          class="textarea textarea-md border bg-white text-gray-800 dark:bg-white dark:text-gray-800 rounded p-2 mt-2 w-64 mx-auto" 
           placeholder="Infos précises: tâches, environnement, produits à disposition"  
           required        
         >
@@ -45,7 +45,7 @@
         </label>
         <input 
           v-model="dateMission"
-          type="date" class="input w-64 mx-auto border bg-[#3B82F6]/16" id="dateMission" name="dateMission" required
+          type="date" class="input border rounded p-2 bg-white text-gray-800 dark:bg-white dark:text-gray-800 mt-2 w-64 mx-auto" id="dateMission" name="dateMission" required
           @blur="validateDate"
         />
         <p v-if="errors.dateMission" class="text-red-600 text-sm text-center font-semibold">{{ errors.dateMission }}</p>
@@ -60,7 +60,7 @@
         </label>
         <input 
           v-model="hourStartMission"
-          type="time" class="input w-64 mx-auto border bg-[#3B82F6]/16" id="hourStartMission" name="hourStartMission" required
+          type="time" class="input border rounded p-2 bg-white text-gray-800 dark:bg-white dark:text-gray-800 mt-2 w-64 mx-auto" id="hourStartMission" name="hourStartMission" required
           @change="validateHour"
         />
 
@@ -74,7 +74,7 @@
         </label>
         <input 
           v-model="hourEndMission"
-          type="time" class="input w-64 mx-auto border bg-[#3B82F6]/16" id="hourEndMission" name="hourEndMission" required 
+          type="time" class="input border rounded p-2 bg-white text-gray-800 dark:bg-white dark:text-gray-800 mt-2 w-64 mx-auto" id="hourEndMission" name="hourEndMission" required 
           @change="validateHour"
         />
         <p v-if="errors.hourEndMission" class="text-red-600 text-sm text-center font-semibold">{{ errors.hourEndMission }}</p>
@@ -89,7 +89,7 @@
           Lieu :
         </label>
         <input v-model="placeMission" 
-          type="text" class="input w-64 mx-auto border bg-[#3B82F6]/16" id="placeMission" name="placeMission" required placeholder="1 rue de la République"
+          type="text" class="input border rounded p-2 bg-white text-gray-800 dark:bg-white dark:text-gray-800 mt-2 w-64 mx-auto" id="placeMission" name="placeMission" required placeholder="1 rue de la République"
           />
           <p v-if="errors.placeMission" class="text-red-600 text-sm text-center font-semibold">{{ errors.placeMission }}</p>
 
@@ -100,7 +100,7 @@
             v-model="postalMission" 
             type="text" 
             maxlength="5" 
-            class="input w-28 border bg-[#3B82F6]/16" 
+            class="input w-28 border bg-white text-gray-800 dark:bg-white dark:text-gray-800" 
             placeholder="Code postal"
             @blur="validatePostal"
           />
@@ -109,7 +109,7 @@
           <input 
             v-model="cityMission" 
             type="text" 
-            class="input w-40 border bg-[#3B82F6]/16" 
+            class="input w-40 border bg-white text-gray-800 dark:bg-white dark:text-gray-800" 
             placeholder="Ville"
           />
         </div>
@@ -172,7 +172,7 @@
         <!--Techniques-->
         <div class="dropdown dropdown-bottom dropdown-center flex items-center justify-center text-xl gap-2">
           <!-- Bouton -->
-          <div tabindex="0" role="button" class="btn m-1 border bg-[#3B82F6]/16">
+          <div tabindex="0" role="button" class="btn m-1 border bg-white text-gray-800 dark:bg-white dark:text-gray-800">
             Techniques demandées...
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -184,7 +184,7 @@
           </div>
 
           <!-- Contenu du dropdown -->
-          <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-64 p-2 shadow-sm border bg-[#3B82F6]/16">
+          <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-64 p-2 shadow-sm border bg-white text-gray-800 dark:bg-white dark:text-gray-800">
             <li>
               <span class="font-semibold">Entretien courant</span>
               <ul class="ml-4 mt-2">
