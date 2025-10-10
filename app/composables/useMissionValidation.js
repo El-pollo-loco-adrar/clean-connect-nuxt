@@ -1,5 +1,4 @@
-
-//! Sécurité du formulaire
+//! Sécurité du formulaire d'ajout de mission
 export function useMissionValidation(formData){
   const errors = ref({});//Pour stocker les erreurs
   const nameRegex = /^[a-zA-Z0-9\s-éèêëàâäôöûüç,.'#+]{3,}$/; //Regex titre

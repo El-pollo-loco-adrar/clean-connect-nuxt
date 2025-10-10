@@ -46,7 +46,7 @@
 
         <!-- Liens de navigation -->
         <ul class="space-y-8 text-xl font-bold text-black mt-10">
-          <NuxtLink to="/homePart" @click="toggleMenu">
+          <NuxtLink to="/particulier/myProfil" @click="toggleMenu">
             <li class="border-2 bg-[#3B82F6]/16 rounded-lg p-4 text-center shadow-xl m-8">Mon profil</li>
           </NuxtLink>
           <NuxtLink to="/homePart" @click="toggleMenu">

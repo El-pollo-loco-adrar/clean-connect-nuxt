@@ -49,16 +49,16 @@
           <NuxtLink to="/homePro" @click="toggleMenu">
             <li class="border-2 bg-[#3B82F6]/16 rounded-lg p-4 text-center shadow-xl m-8">Profil entreprise</li>
           </NuxtLink>
-          <NuxtLink to="/homePart" @click="toggleMenu">
+          <NuxtLink to="/pro/HomePro" @click="toggleMenu">
             <li class="border-2 bg-[#3B82F6]/16 rounded-lg p-4 text-center shadow-xl m-8">Document entreprise</li>
           </NuxtLink>
-          <NuxtLink to="/homePart" @click="toggleMenu">
+          <NuxtLink to="/pro/myMissions" @click="toggleMenu">
             <li class="border-2 bg-[#3B82F6]/16 rounded-lg p-4 text-center shadow-xl m-8">Historique des missions</li>
           </NuxtLink>
-          <NuxtLink to="/homePart" @click="toggleMenu">
+          <NuxtLink to="/pro/HomePro" @click="toggleMenu">
             <li class="border-2 bg-[#3B82F6]/16 rounded-lg p-4 text-center shadow-xl m-8">Mes achats</li>
           </NuxtLink>
-          <NuxtLink to="/homePart" @click="toggleMenu">
+          <NuxtLink to="/pro/HomePro" @click="toggleMenu">
             <li class="border-2 bg-[#3B82F6]/16 rounded-lg p-4 text-center shadow-xl m-8">Contact support</li>
           </NuxtLink>
 

@@ -33,9 +33,11 @@
         Retour pour modifier
       </NuxtLink>
       <!-- Bouton Publier-->
-      <NuxtLink to="/" class="btn bg-[#2563EB]/79 w-fit px-6 m-4 mx-auto text-white border-2 border-black rounded-4">
+      <button @click="publierMission"
+        class="btn bg-[#2563EB]/79 w-fit px-6 m-4 mx-auto text-white border-2 border-black rounded-4"
+      >
         Publier la mission
-      </NuxtLink>
+      </button>
     </div>
   </div>
 
@@ -47,6 +49,7 @@
 <script setup >
 import { useMissionStore } from '~/stores/mission';
 
+const router = useRouter();
 const missionStore = useMissionStore();
 const mission = missionStore.missionData;
 
@@ -58,6 +61,12 @@ const totalCredits = computed(() => {
   }
     return total
 });
+
+// Appel de la fonction de publication
+const publierMission = () => {
+  missionStore.addMission()
+  router.push('/pro/myMissions')
+}
 
 </script>
 
